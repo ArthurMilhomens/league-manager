@@ -1,6 +1,9 @@
+import { Flex } from '@chakra-ui/react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
+import DashboardTable from '../components/DashboardTable';
+import Header from '../components/Header';
 import { getUsers } from '../lib/users';
 
 type User = {
@@ -17,10 +20,13 @@ const Home: React.FC = ({ users }: Props) => {
   return (
     <>
       <Head>
-        <title>CRM | League</title>
+        <title>League</title>
       </Head>
       <main>
-        {users.map((user: User) => <p key={user.id}>{user.name}</p>)}
+        <Flex direction="column" w="100vw" h="100vh" align="center" >
+          <Header />
+          <DashboardTable users={users} />
+        </Flex>
       </main>
     </>
   )
