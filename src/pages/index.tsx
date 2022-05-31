@@ -54,6 +54,7 @@ const Home: React.FC = ({ users }: Props) => {
           isClosable: true,
           status: 'success'
         })
+        setScoresToAdd([])
       })
       .finally(() => {
         setLoading(false)
