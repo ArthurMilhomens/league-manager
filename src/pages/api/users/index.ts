@@ -37,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    return res.status(201).json({ message: "Update complete!" })
+    return res.status(200).json({ message: "Update complete!" })
   }
 
   return res.status(404).json({ message: 'Route not found.' });

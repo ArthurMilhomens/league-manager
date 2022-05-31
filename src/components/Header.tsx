@@ -1,7 +1,14 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
-import { GoPlus } from 'react-icons/go'
+import { GoPlus, GoCheck } from 'react-icons/go'
 
-export default function Header() {
+interface Props {
+    loading: boolean;
+    editableTable: boolean;
+    setEditableTable: (value: boolean) => void;
+    updateScore: () => void;
+}
+
+export default function Header({ editableTable, setEditableTable, loading, updateScore }: Props) {
     return (
         <Flex
             as="header"
@@ -21,9 +28,14 @@ export default function Header() {
             >
                 Copa <Text as="span" color="purple.400">Rybená</Text> de Magic
             </Text>
-            <Button ml="auto" colorScheme='purple' leftIcon={<GoPlus />}>
-                Nova Rodada
-            </Button>
+            {editableTable
+                ? <Button onClick={() => updateScore()} isLoading={loading} loadingText="Salvando..." ml="auto" colorScheme='green' leftIcon={<GoCheck />}>
+                    Salvar
+                </Button>
+                : <Button onClick={() => setEditableTable(true)}ml="auto" colorScheme='purple' leftIcon={<GoPlus />}>
+                    Nova Rodada
+                </Button>
+            }
         </Flex>
     )
 }
